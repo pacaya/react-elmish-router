@@ -37,6 +37,45 @@ export function Link<Route extends string>({
   );
 }
 
+export function LinkRef<Route extends string>({
+                                                  dispatch,
+                                                  route,
+                                                  pushHistory,
+                                                  match,
+                                                  hash,
+                                                  search,
+                                                  ...rest
+                                              }: RouterLinkProps<Route> & {
+    route: Route;
+    match?: { [key: string]: string | undefined };
+    pushHistory?: boolean;
+    hash?: ParsedHash;
+    search?: ParsedSearch;
+}, ref: Ref<HTMLAnchorElement>) {
+    return React.forwardRef(({
+                                 dispatch,
+                                 route,
+                                 pushHistory,
+                                 match,
+                                 hash,
+                                 search,
+                                 ...rest
+                             }: RouterLinkProps<Route> & {
+        route: Route;
+        match?: { [key: string]: string | undefined };
+        pushHistory?: boolean;
+        hash?: ParsedHash;
+        search?: ParsedSearch;
+    }, ref: Ref<HTMLAnchorElement>) => (
+        <a
+            ref={ref}
+            onClick={() => dispatchNavigate(route, pushHistory ?? false, match ?? {}, dispatch, hash, search)}
+            {...rest}
+        />
+    ));
+}
+
+
 export function Back({ dispatch, ...props }: RouterLinkProps<unknown>) {
   return (
     <a
