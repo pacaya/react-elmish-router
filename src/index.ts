@@ -168,7 +168,7 @@ export function navigateEffect<Route extends string>(
       parsedHash: parseHashOrSearch(window.location.hash),
       parsedSearch: parseHashOrSearch(window.location.search),
     });
-  }, (err) => {
+  }, (err: any) => {
     console.error('FAILED TO ROUTE DUE TO ', err);
     return ({
       type: 'ROUTER',
