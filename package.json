@@ -38,6 +38,6 @@
   },
   "peerDependencies": {
     "react": "^17.0.0",
-    "react-use-elmish": "git+https://github.com/pacaya/react-use-elmish.git"
+    "react-use-elmish": "^2.0.0"
   }
 }
